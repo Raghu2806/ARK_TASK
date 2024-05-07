@@ -3,7 +3,10 @@ import numpy as np
 import random
 from collections import deque
 
-# Load the maze image
+# We were asked to do this in autonavsim2d but i did not understand how to use it properly after installing it 
+# I tried to import utlis.post as showed in the documentation of autonavsim2d provided but it is showing no module utlis 
+# I tried to troubleshoot but could not do it in time
+
 img = cv2.imread('maze.png')
 
 # Define start and end points for easy scenario
@@ -37,7 +40,8 @@ def line_intersects_obstacle(p1, p2):
             return True
     return False
 
-# PRM algorithm
+# As the maze is fairly simply i thought BFS would be fine and used it and did not use a* 
+# Breadth first search
 def prm_algorithm(start, end):
     roadmap = []
     n_points = 500
@@ -60,7 +64,7 @@ def prm_algorithm(start, end):
                 adjacency_list[p1].append(p2)
                 adjacency_list[p2].append(p1)
 
-    # Find path using BFS
+    # Finding path using BFS
     queue = deque([(start, [start])])
     visited = set()
     while queue:
